@@ -1,5 +1,6 @@
 package br.com.f1rst.cadastro_funcionario.Funcionario.domain;
 
+import br.com.f1rst.cadastro_funcionario.Funcionario.application.api.FuncionarioRequest;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AccessLevel;
@@ -31,14 +32,12 @@ public class Funcionario {
     private LocalDateTime dataHoraDoCadasto;
     private LocalDateTime dataHoraDaUltimaAlteracao;
 
-    public Funcionario(Integer id, String nomeCompleto, String designacao,
-                       String salario, String celular, String endereco,
-                       LocalDateTime dataHoraDoCadasto) {
-        this.nomeCompleto = nomeCompleto;
-        this.designacao = designacao;
-        this.salario = salario;
-        this.celular = celular;
-        this.endereco = endereco;
+    public Funcionario(FuncionarioRequest funcionarioRequest) {
+        this.nomeCompleto = funcionarioRequest.getNomeCompleto();
+        this.designacao = funcionarioRequest.getDesignacao();
+        this.salario = funcionarioRequest.getSalario();
+        this.celular = funcionarioRequest.getCelular();
+        this.endereco = funcionarioRequest.getEndereco();
         this.dataHoraDoCadasto = LocalDateTime.now();
     }
 }
