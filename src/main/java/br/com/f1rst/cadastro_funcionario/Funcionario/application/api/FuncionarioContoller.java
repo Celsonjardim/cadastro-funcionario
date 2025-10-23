@@ -16,6 +16,6 @@ public class FuncionarioContoller implements FuncionarioAPI {
         log.info("[start] FuncionarioContoller - postFuncionario");
         FuncionarioResponse funcionarioCriado = funcionarioService.criaFuncionario(funcionarioRequest);
         log.info("[finish] FuncionarioContoller - postFuncionario");
-        return null;
+        return funcionarioCriado;
     }
 }
