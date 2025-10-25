@@ -28,6 +28,6 @@ public class FuncionarioInfraRepository implements FuncionarioRepository {
         log.info("[start] FuncionarioInfraRepository - buscaTodosFuncionarios");
         List<Funcionario> todosFuncionarios = funcionarioSpringDataJPARepository.findAll();
         log.info("[finish] FuncionarioInfraRepository - buscaTodosFuncionarios");
-        return List.of();
+        return todosFuncionarios;
     }
 }
