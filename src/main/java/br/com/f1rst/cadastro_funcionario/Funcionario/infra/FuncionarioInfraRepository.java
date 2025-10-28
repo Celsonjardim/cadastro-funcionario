@@ -2,12 +2,16 @@ package br.com.f1rst.cadastro_funcionario.Funcionario.infra;
 
 import br.com.f1rst.cadastro_funcionario.Funcionario.application.repository.FuncionarioRepository;
 import br.com.f1rst.cadastro_funcionario.Funcionario.domain.Funcionario;
+import br.com.f1rst.cadastro_funcionario.handler.APIException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.antlr.v4.runtime.misc.LogManager;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Repository
 @Log4j2
@@ -29,5 +33,14 @@ public class FuncionarioInfraRepository implements FuncionarioRepository {
         List<Funcionario> todosFuncionarios = funcionarioSpringDataJPARepository.findAll();
         log.info("[finish] FuncionarioInfraRepository - buscaTodosFuncionarios");
         return todosFuncionarios;
+    }
+
+    @Override
+    public Funcionario buscaFuncionarioAtravesId(UUID idFuncionario) {
+        log.info("[start] FuncionarioInfraRepository - buscaFuncionarioAtravesId");
+        Funcionario funcionario = funcionarioSpringDataJPARepository.findById(idFuncionario)
+                .orElseThrow(() -> APIException.build(HttpStatus.NOT_FOUND, "Cliente não encontrado"));
+        log.info("[finish] FuncionarioInfraRepository - buscaFuncionarioAtravesId");
+        return funcionario;
     }
 }
