@@ -1,5 +1,6 @@
 package br.com.f1rst.cadastro_funcionario.Funcionario.application.service;
 
+import br.com.f1rst.cadastro_funcionario.Funcionario.application.api.FuncionarioDetalhadoResponse;
 import br.com.f1rst.cadastro_funcionario.Funcionario.application.api.FuncionarioListResponse;
 import br.com.f1rst.cadastro_funcionario.Funcionario.application.api.FuncionarioRequest;
 import br.com.f1rst.cadastro_funcionario.Funcionario.application.api.FuncionarioResponse;
@@ -10,6 +11,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @Log4j2
@@ -33,5 +35,12 @@ public class FuncionarioApplicationService implements FuncionarioService {
         List<Funcionario> funcionarios = funcionarioRepository.buscaTodosFuncionarios();
         log.info("[finish] FuncionarioApplicationService - buscaTodosFuncionarios");
         return FuncionarioListResponse.converte(funcionarios);
+    }
+
+    @Override
+    public FuncionarioDetalhadoResponse buscaFuncionarioAtravesId(UUID idFuncionario) {
+        log.info("[start] FuncionarioApplicationService - buscaFuncionarioAtravesId");
+        log.info("[finish] FuncionarioApplicationService - buscaFuncionarioAtravesId");
+        return null;
     }
 }
