@@ -38,4 +38,11 @@ public class FuncionarioContoller implements FuncionarioAPI {
         log.info("[finish] FuncionarioContoller - getFuncionariosAtravesId");
         return funcionarioDetalhado;
     }
+
+    @Override
+    public void deletaFuncionariosAtravesId(UUID idFuncionario) {
+        log.info("[start] FuncionarioContoller - deletaFuncionariosAtravesId");
+        log.info("[idFuncionario] {}", idFuncionario);
+        log.info("[finish] FuncionarioContoller - deletaFuncionariosAtravesId");
+    }
 }
