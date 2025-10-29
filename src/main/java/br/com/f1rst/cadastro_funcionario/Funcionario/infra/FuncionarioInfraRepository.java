@@ -43,4 +43,11 @@ public class FuncionarioInfraRepository implements FuncionarioRepository {
         log.info("[finish] FuncionarioInfraRepository - buscaFuncionarioAtravesId");
         return funcionario;
     }
+
+    @Override
+    public void deletaFuncionario(Funcionario funcionario) {
+        log.info("[start] FuncionarioInfraRepository - deletaFuncionario");
+        funcionarioSpringDataJPARepository.delete(funcionario);
+        log.info("[finish] FuncionarioInfraRepository - deletaFuncionario") ;
+    }
 }
