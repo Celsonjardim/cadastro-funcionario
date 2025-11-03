@@ -6,6 +6,7 @@ import br.com.f1rst.cadastro_funcionario.handler.APIException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.antlr.v4.runtime.misc.LogManager;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
@@ -22,7 +23,11 @@ public class FuncionarioInfraRepository implements FuncionarioRepository {
     @Override
     public Funcionario salva(Funcionario funcionario) {
         log.info("[start] FuncionarioInfraRepository - salva");
+        try {
         funcionarioSpringDataJPARepository.save(funcionario);
+        }catch (DataIntegrityViolationException e){
+            throw APIException.build(HttpStatus.BAD_REQUEST, "Existem dados duplicados", e);
+        }
         log.info("[finish] FuncionarioInfraRepository - salva");
         return funcionario;
     }
