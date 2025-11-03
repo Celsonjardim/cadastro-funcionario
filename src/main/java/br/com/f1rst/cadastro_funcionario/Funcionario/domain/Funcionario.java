@@ -19,6 +19,7 @@ public class Funcionario {
     @Column(name = "id", updatable = false, unique = true, nullable = false)
     private UUID idFuncionario;
     @NotBlank
+    @Column(unique = true)
     private String nomeCompleto;
     @NotBlank
     private String designacao;
