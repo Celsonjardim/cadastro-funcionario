@@ -46,4 +46,12 @@ public class FuncionarioContoller implements FuncionarioAPI {
         funcionarioService.deletaFuncionarioAtravesId(idFuncionario);
         log.info("[finish] FuncionarioContoller - deletaFuncionariosAtravesId");
     }
+
+    @Override
+    public void petchAlteraFuncionario(UUID idFuncionario, FuncionarioAlteracaoRequest funcionarioAlteracaoRequest) {
+        log.info("[start] FuncionarioContoller - petchAlteraFuncionario");
+        log.info("[idFuncionario] {}", idFuncionario);
+        log.info("[finish] FuncionarioContoller - petchAlteraFuncionario");
+
+    }
 }
