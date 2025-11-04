@@ -1,5 +1,6 @@
 package br.com.f1rst.cadastro_funcionario.Funcionario.domain;
 
+import br.com.f1rst.cadastro_funcionario.Funcionario.application.api.FuncionarioAlteracaoRequest;
 import br.com.f1rst.cadastro_funcionario.Funcionario.application.api.FuncionarioRequest;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -40,5 +41,13 @@ public class Funcionario {
         this.celular = funcionarioRequest.getCelular();
         this.endereco = funcionarioRequest.getEndereco();
         this.dataHoraDoCadasto = LocalDateTime.now();
+    }
+
+    public void altera(FuncionarioAlteracaoRequest funcionarioRequest) {
+        this.designacao = funcionarioRequest.getDesignacao();
+        this.salario = funcionarioRequest.getSalario();
+        this.celular = funcionarioRequest.getCelular();
+        this.endereco = funcionarioRequest.getEndereco();
+        this.dataHoraDaUltimaAlteracao = LocalDateTime.now();
     }
 }

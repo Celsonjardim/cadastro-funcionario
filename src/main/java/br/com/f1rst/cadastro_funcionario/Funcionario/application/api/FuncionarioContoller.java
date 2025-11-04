@@ -1,6 +1,7 @@
 package br.com.f1rst.cadastro_funcionario.Funcionario.application.api;
 
 import br.com.f1rst.cadastro_funcionario.Funcionario.application.service.FuncionarioService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.RestController;
@@ -48,9 +49,10 @@ public class FuncionarioContoller implements FuncionarioAPI {
     }
 
     @Override
-    public void petchAlteraFuncionario(UUID idFuncionario, FuncionarioAlteracaoRequest funcionarioAlteracaoRequest) {
+    public void petchAlteraFuncionario(UUID idFuncionario, @Valid FuncionarioAlteracaoRequest funcionarioAlteracaoRequest) {
         log.info("[start] FuncionarioContoller - petchAlteraFuncionario");
         log.info("[idFuncionario] {}", idFuncionario);
+        funcionarioService.petchAlteraFuncionario(idFuncionario, funcionarioAlteracaoRequest);
         log.info("[finish] FuncionarioContoller - petchAlteraFuncionario");
 
     }
