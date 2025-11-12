@@ -1,6 +1,7 @@
 package br.com.f1rst.cadastro_funcionario.Funcionario.application.api;
 
 import br.com.f1rst.cadastro_funcionario.Funcionario.application.service.FuncionarioService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,5 +38,22 @@ public class FuncionarioContoller implements FuncionarioAPI {
         FuncionarioDetalhadoResponse funcionarioDetalhado = funcionarioService.buscaFuncionarioAtravesId(idFuncionario);
         log.info("[finish] FuncionarioContoller - getFuncionariosAtravesId");
         return funcionarioDetalhado;
+    }
+
+    @Override
+    public void deletaFuncionariosAtravesId(UUID idFuncionario) {
+        log.info("[start] FuncionarioContoller - deletaFuncionariosAtravesId");
+        log.info("[idFuncionario] {}", idFuncionario);
+        funcionarioService.deletaFuncionarioAtravesId(idFuncionario);
+        log.info("[finish] FuncionarioContoller - deletaFuncionariosAtravesId");
+    }
+
+    @Override
+    public void petchAlteraFuncionario(UUID idFuncionario, @Valid FuncionarioAlteracaoRequest funcionarioAlteracaoRequest) {
+        log.info("[start] FuncionarioContoller - petchAlteraFuncionario");
+        log.info("[idFuncionario] {}", idFuncionario);
+        funcionarioService.petchAlteraFuncionario(idFuncionario, funcionarioAlteracaoRequest);
+        log.info("[finish] FuncionarioContoller - petchAlteraFuncionario");
+
     }
 }

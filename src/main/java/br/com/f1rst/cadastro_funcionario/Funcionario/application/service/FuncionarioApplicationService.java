@@ -1,9 +1,6 @@
 package br.com.f1rst.cadastro_funcionario.Funcionario.application.service;
 
-import br.com.f1rst.cadastro_funcionario.Funcionario.application.api.FuncionarioDetalhadoResponse;
-import br.com.f1rst.cadastro_funcionario.Funcionario.application.api.FuncionarioListResponse;
-import br.com.f1rst.cadastro_funcionario.Funcionario.application.api.FuncionarioRequest;
-import br.com.f1rst.cadastro_funcionario.Funcionario.application.api.FuncionarioResponse;
+import br.com.f1rst.cadastro_funcionario.Funcionario.application.api.*;
 import br.com.f1rst.cadastro_funcionario.Funcionario.application.repository.FuncionarioRepository;
 import br.com.f1rst.cadastro_funcionario.Funcionario.domain.Funcionario;
 import lombok.RequiredArgsConstructor;
@@ -43,5 +40,23 @@ public class FuncionarioApplicationService implements FuncionarioService {
         Funcionario funcionario = funcionarioRepository.buscaFuncionarioAtravesId(idFuncionario);
         log.info("[finish] FuncionarioApplicationService - buscaFuncionarioAtravesId");
         return new FuncionarioDetalhadoResponse(funcionario);
+    }
+
+    @Override
+    public void deletaFuncionarioAtravesId(UUID idFuncionario) {
+        log.info("[start] FuncionarioApplicationService - deletaFuncionarioAtravesId");
+        Funcionario funcionario = funcionarioRepository.buscaFuncionarioAtravesId(idFuncionario);
+        funcionarioRepository.deletaFuncionario(funcionario);
+        log.info("[finish] FuncionarioApplicationService - deletaFuncionarioAtravesId");
+    }
+
+    @Override
+    public void petchAlteraFuncionario(UUID idFuncionario, FuncionarioAlteracaoRequest funcionarioAlteracaoRequest) {
+        log.info("[start] FuncionarioApplicationService - petchAlteraFuncionario");
+        Funcionario funcionario = funcionarioRepository.buscaFuncionarioAtravesId(idFuncionario);
+        funcionario.altera(funcionarioAlteracaoRequest);
+        funcionarioRepository.salva(funcionario);
+        log.info("[finish] FuncionarioApplicationService - petchAlteraFuncionario");
+
     }
 }
